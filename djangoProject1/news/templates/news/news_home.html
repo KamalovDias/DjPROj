@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% block title %} НОВОСТИ {% endblock %}
+{% block name %} НОВОСТИ {% endblock %}
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h2>НОВОСТИ</h2>
+        </div>
+    </div>
+    {% if news %}
+        {% for ne in news %}
+        <div class="features">
+            <div class="col-sm-6">
+                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;">
+                    <div class="card-header">{{ ne.title }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ne.anons}}</h5>
+                        <p class="card-text">{{ ne.full_text }}</p>
+                        <a href="{% url 'news-detail'  ne.id %}" class="btn btn-success">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p> У вас не записей!</p>
+    {% endif %}
+{% endblock %}
